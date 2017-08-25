@@ -9,33 +9,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Group;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
+import com.everis.alicante.courses.beca.summer17.friendsnet.manager.GroupManager;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
 @RestController
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/group")
+public class GroupController {
 
 	@Autowired
-	PersonManager manager;
+	GroupManager manager;
 
 	@GetMapping
-	public List<Person> getAll() {
-		List<Person> persons = (List<Person>) manager.findAll();
-		return persons;
+	public List<Group> getAll() {
+		List<Group> groups= (List<Group>) manager.findAll();
+		return groups;
 	}
 
 	@GetMapping("/{id}")
-	public Person getById(@RequestParam Long id) {
-		return (Person) manager.findById(id);
+	public Group getById(@RequestParam Long id) {
+		return (Group) manager.findById(id);
 	}
 
 	@PostMapping
-	public Person create(@RequestBody final Person person) {
-		return manager.save(person);
+	public Group create(@RequestBody final Group group) {
+		return manager.save(group);
 	}
 
-	public Person relate(@RequestParam Long id, List<Long> persons) {
+	public Group relate(@RequestParam Long id, List<Long> groups) {
 		return null;
 	}
 

@@ -1,10 +1,11 @@
-package com.everis.alicante.courses.beca.summer17.friendsnet.manager;
+package com.everis.alicante.courses.beca.summer17.friendsnet.manager.implementaciones;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
+import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
 @Service
 public class PersonManagerImpl implements PersonManager {

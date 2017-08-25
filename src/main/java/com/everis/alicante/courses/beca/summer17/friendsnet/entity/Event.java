@@ -1,18 +1,21 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import com.everis.alicante.courses.beca.summer17.friendsnet.enums.EventType;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "persons")
-public class Person implements FNEntity {
+@Table(name = "events")
+public class Event implements FNEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -23,8 +26,16 @@ public class Person implements FNEntity {
 
 	@Getter
 	@Setter
-	private String surname;
+	private Date startingDate;
+	
+	@Getter
+	@Setter
+	private Date endingDate;
 
+	@Getter
+	@Setter
+	private EventType type;
+	
 	@Getter
 	@Setter
 	private byte[] picture;

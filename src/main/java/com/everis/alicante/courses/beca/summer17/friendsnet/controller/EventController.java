@@ -9,35 +9,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Event;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
+import com.everis.alicante.courses.beca.summer17.friendsnet.manager.EventManager;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
 @RestController
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/event")
+public class EventController {
 
 	@Autowired
-	PersonManager manager;
+	EventManager manager;
 
 	@GetMapping
-	public List<Person> getAll() {
-		List<Person> persons = (List<Person>) manager.findAll();
-		return persons;
+	public List<Event> getAll() {
+		List<Event> events = (List<Event>) manager.findAll();
+		return events;
 	}
 
 	@GetMapping("/{id}")
-	public Person getById(@RequestParam Long id) {
-		return (Person) manager.findById(id);
+	public Event getById(@RequestParam Long id) {
+		return (Event) manager.findById(id);
 	}
 
 	@PostMapping
-	public Person create(@RequestBody final Person person) {
-		return manager.save(person);
+	public Event create(@RequestBody final Event event) {
+		return manager.save(event);
 	}
 
-	public Person relate(@RequestParam Long id, List<Long> persons) {
-		return null;
-	}
 
 	@DeleteMapping("/{id}")
 	public void remove(@RequestParam Long id) {

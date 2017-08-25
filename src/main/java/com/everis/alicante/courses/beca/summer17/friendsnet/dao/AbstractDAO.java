@@ -2,6 +2,8 @@ package com.everis.alicante.courses.beca.summer17.friendsnet.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -44,6 +46,10 @@ public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> i
 
 	public E findById(ID id) {
 		return entityManager.find(persistentClass, id);
+	}
+
+	public E findByIds(Set<ID> ids) {
+		return entityManager.find(persistentClass, ids);
 	}
 
 	public E save(E e) {

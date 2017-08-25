@@ -11,19 +11,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "persons")
-public class Person implements FNEntity {
+@Table(name = "groups")
+public class Group implements FNEntity {
 	@Id
+	@Getter
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Getter
 	@Setter
 	private String name;
-
-	@Getter
-	@Setter
-	private String surname;
 
 	@Getter
 	@Setter
