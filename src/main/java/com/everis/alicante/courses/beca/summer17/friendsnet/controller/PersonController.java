@@ -13,7 +13,7 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 import com.everis.alicante.courses.beca.summer17.friendsnet.manager.PersonManager;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/persons")
 public class PersonController {
 
 	@Autowired
@@ -21,8 +21,8 @@ public class PersonController {
 
 	@GetMapping
 	public List<Person> getAll() {
-		List<Person> person = (List<Person>) manager.findAll();
-		return person;
+		List<Person> persons = (List<Person>) manager.findAll();
+		return persons;
 	}
 
 	@GetMapping("/{id}")
