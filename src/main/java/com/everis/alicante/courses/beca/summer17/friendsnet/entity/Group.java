@@ -1,29 +1,36 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
+import java.util.Set;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
 
+import lombok.Data;
+
+@Data
 @Entity
-@Table(name = "grouptable")
+@Table(name = "groupTable")
 public class Group implements FNEntity {
-	@Id
-	@Getter
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 
-	@Getter
-	@Setter
+	// Definition of variables of the entity Person
+	@Id
+	@Column(name = "groupid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idgroup;
+
 	private String name;
 
-	@Getter
-	@Setter
-	private byte[] picture;
+	private Byte[] picture;
+
+	@ManyToMany
+	@JoinColumn(name = "personid")
+	private Set<Person> personsPerGroup;
 
 }

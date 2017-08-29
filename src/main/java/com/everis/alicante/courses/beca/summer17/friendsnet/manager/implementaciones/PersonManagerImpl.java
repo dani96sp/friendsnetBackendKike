@@ -1,12 +1,10 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.manager.implementaciones;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import com.everis.alicante.courses.beca.summer17.friendsnet.dao.PersonDAO;
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
@@ -25,7 +23,7 @@ public class PersonManagerImpl implements PersonManager {
 
 	@Override
 	public Person findById(Long id) {
-		return dao.findById(id);
+		return dao.findOne(id);
 	}
 
 	@Override
@@ -35,34 +33,37 @@ public class PersonManagerImpl implements PersonManager {
 
 	@Override
 	public Iterable<Person> saveAll(Iterable<Person> e) {
-		return dao.saveAll(e);
-		
+		return dao.save(e);
 	}
 
 	@Override
 	public Person update(Person e) {
-		return dao.update(e);
+		return dao.save(e);
 	}
 
 	@Override
 	public Iterable<Person> update(Iterable<Person> e) {
-		return dao.update(e);
+		return dao.save(e);
 	}
 
 	@Override
-	public void remove(Person e) {
-		dao.remove(e);
+	public void delete(Person e) {
+		dao.delete(e);
 	}
 
 	@Override
-    public Person relatePersons(Long personId, List<Long> newFriendIds) {
-        Person person = dao.findById(personId);
-        final Set<Person> personSet = StreamSupport.stream(newFriendIds.spliterator(), false)
-                .map(dao::findById).collect(Collectors.toSet());
-        person.getChildren().addAll(personSet);
-        
-        return dao.update(person);
+	public Person relatePersons(Long id, Set<Long> newFriendsIds) {
+		Person person = this.findById(id);
+		Set<Person> friends = new HashSet<Person>();
+		friends.addAll((Collection<? extends Person>) this.dao.findAll(newFriendsIds));
+		person.getFriends().addAll(friends);
+		dao.save(person);
+		return person;
 	}
 
+	@Override
+	public Iterable<Person> findByIds(Iterable<Long> ids) {
+		return dao.findAll(ids);
+	}
 
 }

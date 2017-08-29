@@ -3,6 +3,8 @@ package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,31 +12,45 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "persontable")
+@Table(name = "personTable")
 public class Person implements FNEntity {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-    @Column(nullable = false)
-    private String name, surname;
-    private byte[] picture;
+	// Definition of variables of the entity Person
+	@Id
+	@Column(name = "personid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idperson;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<PersonGroup> groups;
+	private String name;
 
-    @ManyToOne
-    private Person parent;
+	private String surname;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Person> children;
+	private Byte[] picture;
 
-    public Set<Person> getChildren() {
-        if (this.children == null) {
-            this.children = new HashSet<>();
-        }
-        return this.children;
-    }
-	
-	
+	@ManyToMany
+	@JoinTable(name = "friends", joinColumns = @JoinColumn(name = "personId"), inverseJoinColumns = @JoinColumn(name = "friendId"))
+	private final Set<Person> friends = new HashSet<>();
+
+	@ManyToMany
+	@JoinTable(name = "friends", joinColumns = @JoinColumn(name = "friendId"), inverseJoinColumns = @JoinColumn(name = "personId"))
+	@Getter
+	@Setter
+	private Set<Person> newFriends;
+
+	@ManyToMany(mappedBy = "personsPerGroup")
+	@JsonIgnore
+	private Set<Group> groups;
+
+	@OneToMany(mappedBy = "likesPerPerson")
+	@JsonIgnore
+	private Set<Like> likes;
+
+	@OneToMany(mappedBy = "postsPerPerson")
+	@JsonIgnore
+	private Set<Post> posts;
+
+	@ManyToMany(mappedBy = "personsPerEvent")
+	@JsonIgnore
+	private Set<Event> events;
+
 }

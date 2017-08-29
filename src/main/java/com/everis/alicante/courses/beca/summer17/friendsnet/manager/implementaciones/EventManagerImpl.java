@@ -21,7 +21,12 @@ public class EventManagerImpl implements EventManager {
 
 	@Override
 	public Event findById(Long id) {
-		return dao.findById(id);
+		return dao.findOne(id);
+	}
+	
+	@Override
+	public Iterable<Event> findByIds(Iterable<Long> ids) {
+			return dao.findAll(ids);
 	}
 
 	@Override
@@ -31,23 +36,23 @@ public class EventManagerImpl implements EventManager {
 
 	@Override
 	public Iterable<Event> saveAll(Iterable<Event> e) {
-		return dao.saveAll(e);
+		return dao.save(e);
 		
 	}
 
 	@Override
 	public Event update(Event e) {
-		return dao.update(e);
+		return dao.save(e);
 	}
 
 	@Override
 	public Iterable<Event> update(Iterable<Event> e) {
-		return dao.update(e);
+		return dao.save(e);
 	}
 
 	@Override
-	public void remove(Event e) {
-		dao.remove(e);
+	public void delete(Event e) {
+		dao.delete(e);
 	}
 
 

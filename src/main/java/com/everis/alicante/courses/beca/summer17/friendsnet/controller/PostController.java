@@ -23,8 +23,7 @@ public class PostController {
 
 	@GetMapping
 	public List<Post> getAll() {
-		List<Post> posts = (List<Post>) manager.findAll();
-		return posts;
+		return (List<Post>) manager.findAll();
 	}
 
 	@GetMapping("/{id}")
@@ -40,7 +39,7 @@ public class PostController {
 
 	@DeleteMapping("/{id}")
 	public void remove(@RequestParam Long id) {
-		manager.remove(manager.findById(id));
+		manager.delete(manager.findById(id));
 	}
 
 }

@@ -24,8 +24,7 @@ public class EventController {
 
 	@GetMapping
 	public List<Event> getAll() {
-		List<Event> events = (List<Event>) manager.findAll();
-		return events;
+		return (List<Event>) manager.findAll();
 	}
 
 	@GetMapping("/{id}")
@@ -38,10 +37,9 @@ public class EventController {
 		return manager.save(event);
 	}
 
-
 	@DeleteMapping("/{id}")
 	public void remove(@RequestParam Long id) {
-		manager.remove(manager.findById(id));
+		manager.delete(manager.findById(id));
 	}
 
 }

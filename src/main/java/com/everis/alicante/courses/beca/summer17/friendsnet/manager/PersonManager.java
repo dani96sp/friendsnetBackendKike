@@ -7,6 +7,5 @@ import com.everis.alicante.courses.beca.summer17.friendsnet.entity.Person;
 
 public interface PersonManager extends Manager<Person, Long> {
 
-    public Person relatePersons(Long personId, List<Long> newFriendIds);
-
+	public Person relatePersons(Long id, Set<Long> newFriendsIds);
 }

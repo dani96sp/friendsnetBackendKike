@@ -37,14 +37,14 @@ public class PersonController {
 		return manager.save(person);
 	}
 
-   @PostMapping("/{id}/relate")
-    public Person relate(@RequestParam Long id, @RequestBody List<Long> persons){
+    @PostMapping("/{id}/relate")
+    public Person relate(@RequestParam Long id, @RequestBody Set<Long> persons){
         return this.manager.relatePersons(id, persons);
     }
 
 	@DeleteMapping("/{id}")
 	public void remove(@RequestParam Long id) {
-		manager.remove(manager.findById(id));
+		manager.delete(manager.findById(id));
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.manager;
 
-import java.util.Set;
+
 
 public interface Manager<E, ID> {
 
@@ -8,7 +8,9 @@ public interface Manager<E, ID> {
 	
 	public E findById(ID id);
 
-	public E save(E e);
+	public Iterable<E> findByIds(Iterable<ID> ids);
+
+	<S extends E> S save(S e);
 
 	public Iterable<E> saveAll(Iterable<E> e);
 
@@ -16,5 +18,5 @@ public interface Manager<E, ID> {
 
 	public Iterable<E> update(Iterable<E> e);
 
-	public void remove(E e);
+	public void delete(E e);
 }

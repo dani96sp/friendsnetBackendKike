@@ -24,8 +24,7 @@ public class GroupController {
 
 	@GetMapping
 	public List<Group> getAll() {
-		List<Group> groups= (List<Group>) manager.findAll();
-		return groups;
+		return (List<Group>) manager.findAll();
 	}
 
 	@GetMapping("/{id}")
@@ -38,13 +37,9 @@ public class GroupController {
 		return manager.save(group);
 	}
 
-	public Group relate(@RequestParam Long id, List<Long> groups) {
-		return null;
-	}
-
 	@DeleteMapping("/{id}")
 	public void remove(@RequestParam Long id) {
-		manager.remove(manager.findById(id));
+		manager.delete(manager.findById(id));
 	}
 
 }
