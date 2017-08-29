@@ -1,6 +1,8 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.controller;
 
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +37,8 @@ public class PersonController {
 		return manager.save(person);
 	}
 
-	public Person relate(@RequestParam Long id, List<Long> persons) {
-		return null;
+	public Person relate(@RequestParam Long id, Set<Long> persons) {
+		return manager.relatePersons(id, persons);
 	}
 
 	@DeleteMapping("/{id}")

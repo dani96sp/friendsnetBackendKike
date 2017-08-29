@@ -1,5 +1,7 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,4 +31,9 @@ public class Person implements FNEntity {
 	@Setter
 	private byte[] picture;
 
+	@Getter
+	@Setter
+	private Set<Person> related;
+	
+	
 }
