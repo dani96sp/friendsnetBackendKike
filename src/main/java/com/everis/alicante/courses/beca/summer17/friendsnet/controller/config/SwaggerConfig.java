@@ -36,7 +36,7 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		ApiInfo apiInfo = new ApiInfo("Sample Application REST API",
 				"The API exposes common functionallities to " + "manage the FriendsNet", "API TOS", "Terms of service",
-				"salvatv@hotmail.es", "License of API", "API license URL");
+				"d.dani96.d@gmail.com", "License of API", "API license URL");
 		return apiInfo;
 	}
 }

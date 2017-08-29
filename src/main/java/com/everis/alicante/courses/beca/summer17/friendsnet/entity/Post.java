@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posttable")
 public class Post implements FNEntity {
 	@Id
 	@Getter

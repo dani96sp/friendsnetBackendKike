@@ -2,6 +2,7 @@ package com.everis.alicante.courses.beca.summer17.friendsnet.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -21,7 +22,6 @@ public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> i
 
 	private final Class<E> persistentClass;
 
-	@Autowired
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -48,7 +48,7 @@ public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> i
 		return entityManager.find(persistentClass, id);
 	}
 
-	public E findByIds(Set<ID> ids) {
+	public E findByIds(List<ID> ids) {
 		return entityManager.find(persistentClass, ids);
 	}
 
@@ -73,4 +73,8 @@ public abstract class AbstractDAO<E extends FNEntity, ID extends Serializable> i
 	public void remove(E e) {
 		entityManager.remove(e);
 	}
+	
+    protected Class<E> getPersistentClass() {
+        return persistentClass;
+    }
 }

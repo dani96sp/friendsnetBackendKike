@@ -1,26 +1,26 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.dao;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import com.everis.alicante.courses.beca.summer17.friendsnet.entity.FNEntity;
 
 public interface EntityDAO<E extends FNEntity, ID extends Serializable> {
 
-	public Iterable<E> findAll();
+	 Iterable<E> findAll();
 
-	public E findById(ID id);
+	 E findById(ID id);
 
-	public E findByIds(Set<ID> ids);
+	 E findByIds(List<ID> ids);
 
+	 E save(E e);
 
-	public E save(E e);
+	 Iterable<E> saveAll(Iterable<E> e);
 
-	public Iterable<E> saveAll(Iterable<E> e);
+	 E update(E e);
 
-	public E update(E e);
+	 Iterable<E> update(Iterable<E> e);
 
-	public Iterable<E> update(Iterable<E> e);
-
-	public void remove(E e);
+	 void remove(E e);
 }

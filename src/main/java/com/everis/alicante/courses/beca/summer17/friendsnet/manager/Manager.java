@@ -7,7 +7,6 @@ public interface Manager<E, ID> {
 	public Iterable<E> findAll();
 	
 	public E findById(ID id);
-	
 
 	public E save(E e);
 

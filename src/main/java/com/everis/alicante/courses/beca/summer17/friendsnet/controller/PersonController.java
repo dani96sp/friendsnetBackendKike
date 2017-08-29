@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +24,7 @@ public class PersonController {
 
 	@GetMapping
 	public List<Person> getAll() {
-		List<Person> persons = (List<Person>) manager.findAll();
-		return persons;
+		return (List<Person>) manager.findAll();
 	}
 
 	@GetMapping("/{id}")
@@ -33,13 +33,14 @@ public class PersonController {
 	}
 
 	@PostMapping
-	public Person create(@RequestBody final Person person) {
+	public Person create(@RequestBody Person person) {
 		return manager.save(person);
 	}
 
-	public Person relate(@RequestParam Long id, Set<Long> persons) {
-		return manager.relatePersons(id, persons);
-	}
+   @PostMapping("/{id}/relate")
+    public Person relate(@RequestParam Long id, @RequestBody List<Long> persons){
+        return this.manager.relatePersons(id, persons);
+    }
 
 	@DeleteMapping("/{id}")
 	public void remove(@RequestParam Long id) {

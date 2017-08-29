@@ -1,39 +1,40 @@
 package com.everis.alicante.courses.beca.summer17.friendsnet.entity;
 
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
 @Entity
-@Table(name = "persons")
+@Table(name = "persontable")
 public class Person implements FNEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 
-	@Getter
-	@Setter
-	private String name;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(nullable = false)
+    private String name, surname;
+    private byte[] picture;
 
-	@Getter
-	@Setter
-	private String surname;
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<PersonGroup> groups;
 
-	@Getter
-	@Setter
-	private byte[] picture;
+    @ManyToOne
+    private Person parent;
 
-	@Getter
-	@Setter
-	private Set<Person> related;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Person> children;
+
+    public Set<Person> getChildren() {
+        if (this.children == null) {
+            this.children = new HashSet<>();
+        }
+        return this.children;
+    }
 	
 	
 }

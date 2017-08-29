@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "likes")
+@Table(name = "liketable")
 public class Like implements FNEntity {
 	@Id
 	@Getter

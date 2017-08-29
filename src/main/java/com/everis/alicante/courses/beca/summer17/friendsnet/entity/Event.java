@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "events")
+@Table(name = "eventtable")
 public class Event implements FNEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
